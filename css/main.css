@@ -1,0 +1,15 @@
+body {
+    direction: rtl;
+    padding-top: 50px;
+}
+
+h1 {
+    margin-bottom: 20px;
+    padding-bottom: 9px;
+    border-bottom: 1px solid #eee;
+}
+
+form.border-bottom {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+}

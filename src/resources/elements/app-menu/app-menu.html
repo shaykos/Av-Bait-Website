@@ -1,0 +1,22 @@
+<template>
+  <require from="./app-menu.css"></require>
+  <nav id="custom-bootstrap-menu" class="navbar fixed-top navbar-expand-lg navbar-light">
+    <!--Brand-->
+    <a class="navbar-brand" href="#">
+      <img src="essets/images/logo.png" width="70" height="30" class="d-inline-block align-top" alt="אב הבית">
+    </a>
+    <!--Mobile BTN-->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li repeat.for="link of links.navigation" class="nav-item" class.bind="link.isActive ? 'active' :''">
+          <a class="nav-link" href.bind="link.href">${link.title}</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</template>

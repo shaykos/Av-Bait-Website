@@ -1,0 +1,26 @@
+#custom-bootstrap-menu .navbar-nav .active>.nav-link,
+#custom-bootstrap-menu .navbar-nav .nav-link.active,
+#custom-bootstrap-menu .navbar-nav .nav-link.show,
+#custom-bootstrap-menu .navbar-nav .show>.nav-link {
+    color: rgba(0, 0, 0, .9);
+    background: #e7e7e7;
+}
+
+h1 > small{
+  font-size: 50%;
+}
+
+#custom-bootstrap-menu{
+  background: #000;
+
+}
+
+#custom-bootstrap-menu .nav-link{
+  color:#fff;
+}
+
+
+#custom-bootstrap-menu img{
+  background: #fff;
+
+}

@@ -1,0 +1,17 @@
+<template>
+  <require from="./app-table.css"></require>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th repeat.for="h of headers">${h}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr repeat.for="row of rows">
+          <td repeat.for="col of row">${col}</td>
+        </tr> 
+      </tbody>
+    </table>
+  </div>
+</template>

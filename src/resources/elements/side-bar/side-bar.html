@@ -1,0 +1,12 @@
+<template>
+
+  <require from="./side-bar.css"></require>
+
+  <nav>
+    <ul class="nav nav-pills flex-column">
+      <li repeat.for="link of links.navigation" class="nav-item">
+        <a class="nav-link" href.bind="link.href" class.bind="link.isActive ? 'active' :''">${link.title}</a>
+      </li>
+    </ul>
+  </nav>
+</template>

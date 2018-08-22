@@ -1,0 +1,31 @@
+<template>
+  <require from="../../../resources/elements/page-header/page-header"></require>
+  <require from="../../../resources/elements/app-card/app-card"></require>
+
+
+  <page-header title.bind="title.h1" small.bind="title.small" icon.bind="title.icon" btns.bind="title.btns"></page-header>
+
+  <div class="row clearfix">
+    <div class="col">
+      <form class="form-inline border-bottom">
+        <input class="form-control mr-sm-2 " type="search" placeholder="מס' תביעה" aria-label="Search" value.bind="searchByLawNumber">
+        <input class="form-control mr-sm-2 " type="search" placeholder="שם לקוח" aria-label="Search" value.bind="searchByName">
+        <input class="form-control mr-sm-2 " type="search" placeholder="בעל מקצוע" aria-label="Search" value.bind="searchByBusiness">
+        <input class="form-control mr-sm-2 " type="search" placeholder="כתובת" aria-label="Search" value.bind="searchByAddress">
+        <input class="form-control mr-sm-2 " type="search" placeholder="סוג הזמנה" aria-label="Search" value.bind="searchByType">
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="button" click.trigger="filterCards()"><i class="fas fa-search"></i></button>
+      </form>
+    </div>
+  </div>
+
+  <div class="row">
+    <app-card repeat.for="card of showCards" card.bind="card" 
+      if.bind="card.lawNumber.indexOf(searchByLawNumber) != -1 || 
+      card.name.indexOf(searchByName) != -1 || 
+      card.business.indexOf(searchByBusiness) != -1 ||
+      (card.city + ' ' + card.address).indexOf(searchByAddress) != -1 ||
+      card.type.indexOf(searchByType) != -1" 
+      class="col-md-6 col-xs-12"></app-card>
+  </div>
+
+</template>
