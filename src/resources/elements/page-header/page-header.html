@@ -5,13 +5,18 @@
       <h1 class="h2"><i class="fas ${icon}"></i></span> ${title} <small>${small}</small></h1>
       <div class="btn-toolbar mb-2 mb-md-0" if.bind="btns">
         <div class="btn-group mr-2">
-          <button repeat.for="btn of btns" class="btn btn-sm ${btn.class}" class.bind="!btn.class ? 'btn-outline-secondary' : ''" if.bind="btn.openModel"
+          <button repeat.for="btn of btns" class="btn btn-sm ${btn.class}" class.bind="!btn.class ? 'btn-outline-secondary' : ''" if.bind="btn.openModel && !btn.showFilter"
             data-toggle="modal" data-target="#${btn.openModel}">
             <i class="fas ${btn.icon}"></i>&nbsp;${btn.text}&nbsp;</button>
-          <button repeat.for="btn of btns" class="btn btn-sm ${btn.class}" class.bind="!btn.class ? 'btn-outline-secondary' : ''" if.bind="!btn.openModel">
+          <button repeat.for="btn of btns" class="btn btn-sm ${btn.class}" class.bind="!btn.class ? 'btn-outline-secondary' : ''" if.bind="!btn.openModel && !btn.showFilter">
+            <i class="fas ${btn.icon}"></i>&nbsp;${btn.text}&nbsp;</button>
+          <button repeat.for="btn of btns" class="btn btn-sm ${btn.class}" class.bind="!btn.class ? 'btn-outline-secondary' : ''" if.bind="btn.showFilter"
+            click.delegate="toggleFilter(btn)">
             <i class="fas ${btn.icon}"></i>&nbsp;${btn.text}&nbsp;</button>
         </div>
       </div>
     </div>
   </header>
+ </div>
+
 </template>

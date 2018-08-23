@@ -1,0 +1,12 @@
+<template>
+  <div class="container-fluid" if.bind="showFilter">
+    <div class="row clearfix">
+      <div class="col">
+        <form class="form-inline border-bottom">
+          <input repeat.for="filter of filters" class="form-control mr-sm-2 " type="search" placeholder="${filter.placeholder}" aria-label="Search"
+            value.bind="filter.value" input.delegate="filterCards(filter)" />
+        </form>
+      </div>
+    </div>
+  </div>
+</template>

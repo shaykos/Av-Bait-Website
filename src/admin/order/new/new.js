@@ -10,17 +10,18 @@ export class New {
       small: 'יצירה וצפייה של הזמנות עבודה חדשות',
       icon: 'fa-file-alt',
       btns: [
-        { class: 'btn-success', icon: 'fa-plus-circle', text: 'חדש', openModel:'addOrEditOrder' }
+        { class: 'btn-success', icon: 'fa-plus-circle', text: 'חדש', openModel: 'addOrEditOrder' },
+        { class: 'btn-info', icon: 'fa-filter', text: 'סינון', showFilter: true }
       ]
     }
 
-    this.filters = {
-      lawNumber: '',
-      name: '',
-      business: '',
-      address: '',
-      type: ''
-    }
+    this.filters = [
+      { name: 'lawNumber', value: '', placeholder: 'מספר תביעה' },
+      { name: 'name', value: '', placeholder: 'לקוח' },
+      { name: 'business', value: '', placeholder: 'בעל מקצוע' },
+      { name: 'address', value: '', placeholder: 'כתובת' },
+      { name: 'type', value: '', placeholder: 'סוג הזמנה' }
+    ]
   }
 
   attached() {
@@ -141,8 +142,11 @@ export class New {
         details: 'יש נזילה לשכן'
       }
     ]
-    this.resetFilter();
     this.showAllCards();
+
+    this.ea.subscribe('thisFilter', filter => {
+      this.filterCards(filter);
+    });
   }
 
   showAllCards() {
@@ -151,22 +155,11 @@ export class New {
     });
   }
 
-  resetFilter(thisFilter) {
-    this.keys = new Array();
-    for (let key in this.filters) this.keys.push(key);
-    if (thisFilter >= 0)
-      this.temp = this.filters[this.keys[thisFilter]];
-    for (let index = 0; index < this.keys.length; index++)
-      this.filters[this.keys[index]] = '';
-    if (this.temp)
-      this.filters[this.keys[thisFilter]] = this.temp;
-  }
-
   filterCards(filter) {
-    this.resetFilter(filter);
+    debugger;
     this.showAllCards();
     this.cards.map(card => {
-      if (card[this.keys[filter]].indexOf(this.filters[this.keys[filter]]) != -1) card.toShow = true;
+      if (card[filter.name].indexOf(filter.value) != -1) card.toShow = true;
       else card.toShow = false;
     });
   }

@@ -1,26 +1,11 @@
 <template>
   <require from="../../../resources/elements/page-header/page-header"></require>
   <require from="../../../resources/elements/app-card/app-card"></require>
-
+  <require from="../../../resources/elements/card-filter/card-filter"></require>
 
   <page-header title.bind="title.h1" small.bind="title.small" icon.bind="title.icon" btns.bind="title.btns"></page-header>
 
-  <div class="row clearfix">
-    <div class="col">
-      <form class="form-inline border-bottom">
-        <i class="fas fa-filter"></i>&nbsp;&nbsp;
-        <input class="form-control mr-sm-2 " type="search" placeholder="מס' תביעה" aria-label="Search" value.bind="filters.lawNumber"
-          input.delegate="filterCards(0)"><span>או&nbsp;&nbsp;</span>
-        <input class="form-control mr-sm-2 " type="search" placeholder="שם לקוח" aria-label="Search" value.bind="filters.name" input.delegate="filterCards(1)"><span>או&nbsp;&nbsp;</span>
-        <input class="form-control mr-sm-2 " type="search" placeholder="בעל מקצוע" aria-label="Search" value.bind="filters.business"
-          input.delegate="filterCards(2)"><span>או&nbsp;&nbsp;</span>
-        <input class="form-control mr-sm-2 " type="search" placeholder="כתובת" aria-label="Search" value.bind="filters.address" input.delegate="filterCards(3)"><span>או&nbsp;&nbsp;</span>
-        <input class="form-control mr-sm-2 " type="search" placeholder="סוג הזמנה" aria-label="Search" value.bind="filters.type"
-          input.delegate="filterCards(4)">
-      </form>
-    </div>
-  </div>
-
+  <card-filter filters.bind="filters"></card-filter>
   <div class="row">
     <app-card repeat.for="card of cards" card.bind="card" if.bind="card.toShow" class="col-md-6 col-xs-12"></app-card>
   </div>

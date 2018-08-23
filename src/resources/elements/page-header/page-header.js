@@ -11,7 +11,8 @@ export class PageHeader {
 
   constructor(EventAggregator){
     this.ea = EventAggregator;
-    this.ea.publish('search',this.searchData);
+    
+    this.showFilter = false;
   }
 
   valueChanged(newValue, oldValue) {
@@ -20,6 +21,11 @@ export class PageHeader {
 
   search(){
     this.ea.publish('search',this.searchData);
+  }
+
+  toggleFilter(btn){
+    this.showFilter = !this.showFilter;
+    this.ea.publish('showFilter',this.showFilter);
   }
 }
 
