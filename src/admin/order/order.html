@@ -1,5 +1,5 @@
 <template>
-  
+
   <require from="../../resources/elements/breadcrumbs/breadcrumbs"></require>
   <require from="./order.css"></require>
   <require from="../../resources/elements/side-bar/side-bar"></require>
@@ -12,5 +12,38 @@
       </main>
     </div>
   </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="addOrEditOrder" tabindex="-1" role="dialog" aria-labelledby="editOrder" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">פרטי הזמנה</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-row">
+              <div class="col-md-4 col-sm-6" repeat.for="field of orderFields">
+                <label for="${field.name}" class="form-label">${field.title}</label>
+                <input if.bind="field.type == 'text' || field.type == 'number' || field.type == 'date'" type="${field.type}" class="form-control" id="${field.name}" readonly.bind="field.readOnly" value.bind="currentOrder[field.name]" />
+                <textarea if.bind="field.type == 'textarea'" class="form-control" id="${field.name}" readonly.bind="field.readOnly" value.bind="currentOrder[field.name]"></textarea>
+                <select if.bind="field.type == 'select'" class="form-control" id="${field.name}" readonly.bind="field.readOnly" value.bind="currentOrder[field.name]">
+                  <option repeat.for="option of field.options">${option}</option>
+                </select>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">סגור</button>
+          <button type="button" class="btn btn-success">שמור שינויים</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 </template>

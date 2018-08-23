@@ -10,8 +10,16 @@ export class New {
       small: 'יצירה וצפייה של הזמנות עבודה חדשות',
       icon: 'fa-file-alt',
       btns: [
-        { class: 'btn-success', icon: 'fa-plus-circle', text: 'חדש' }
+        { class: 'btn-success', icon: 'fa-plus-circle', text: 'חדש', openModel:'addOrEditOrder' }
       ]
+    }
+
+    this.filters = {
+      lawNumber: '',
+      name: '',
+      business: '',
+      address: '',
+      type: ''
     }
   }
 
@@ -20,11 +28,10 @@ export class New {
       {
         id: '1',
         lawNumber: '123456789',
-        type: 'הכשרה ביטוח',
+        type: 'שלמה ביטוח', status: '',
         name: 'ישראל ישראלי',
         deductible: 780,
-        city: 'רעננה',
-        address: 'החלוץ 82',
+        address: 'החלוץ 82, רעננה',
         appartment: 12,
         phone: '054-5726662',
         phone2: '',
@@ -36,11 +43,10 @@ export class New {
       {
         id: '2',
         lawNumber: '123456789',
-        type: 'הכשרה ביטוח',
+        type: 'הכשרה ביטוח', status: '',
         name: 'ישראל ישראלי',
         deductible: 780,
-        city: 'רעננה',
-        address: 'החלוץ 82',
+        address: 'החלוץ 82, רעננה',
         appartment: 12,
         phone: '054-5726662',
         phone2: '',
@@ -51,11 +57,10 @@ export class New {
       },
       {
         id: '12', lawNumber: '123456789',
-        type: 'הכשרה ביטוח',
+        type: 'הכשרה ביטוח', status: '',
         name: 'ישראל ישראלי',
         deductible: 780,
-        city: 'רעננה',
-        address: 'החלוץ 82',
+        address: 'החלוץ 82, רעננה',
         appartment: 12,
         phone: '054-5726662',
         phone2: '',
@@ -67,11 +72,10 @@ export class New {
       },
       {
         id: '3', lawNumber: '123456789',
-        type: 'הכשרה ביטוח',
+        type: 'הכשרה ביטוח', status: '',
         name: 'ישראל ישראלי',
         deductible: 780,
-        city: 'רעננה',
-        address: 'החלוץ 82',
+        address: 'החלוץ 82, רעננה',
         appartment: 12,
         phone: '054-5726662',
         phone2: '',
@@ -82,11 +86,10 @@ export class New {
       },
       {
         id: '4', lawNumber: '123456789',
-        type: 'הכשרה ביטוח',
+        type: 'הכשרה ביטוח', status: '',
         name: 'ישראל ישראלי',
         deductible: 780,
-        city: 'רעננה',
-        address: 'החלוץ 82',
+        address: 'החלוץ 82, רעננה',
         appartment: 12,
         phone: '054-5726662',
         phone2: '',
@@ -97,11 +100,10 @@ export class New {
       },
       {
         id: '5', lawNumber: '123456789',
-        type: 'הכשרה ביטוח',
+        type: 'הכשרה ביטוח', status: '',
         name: 'ישראל ישראלי',
         deductible: 780,
-        city: 'רעננה',
-        address: 'החלוץ 82',
+        address: 'החלוץ 82, רעננה',
         appartment: 12,
         phone: '054-5726662',
         phone2: '',
@@ -112,11 +114,10 @@ export class New {
       },
       {
         id: '15', lawNumber: '123456789',
-        type: 'הכשרה ביטוח',
+        type: 'הכשרה ביטוח', status: '',
         name: 'ישראל ישראלי',
         deductible: 780,
-        city: 'רעננה',
-        address: 'החלוץ 82',
+        address: 'החלוץ 82, רעננה',
         appartment: 12,
         phone: '054-5726662',
         phone2: '',
@@ -127,11 +128,10 @@ export class New {
       },
       {
         id: '10', lawNumber: '123456789',
-        type: 'הכשרה ביטוח',
+        type: 'הכשרה ביטוח', status: '',
         name: 'ישראל ישראלי',
         deductible: 780,
-        city: 'רעננה',
-        address: 'החלוץ 82',
+        address: 'החלוץ 82, רעננה',
         appartment: 12,
         phone: '054-5726662',
         phone2: '',
@@ -141,31 +141,34 @@ export class New {
         details: 'יש נזילה לשכן'
       }
     ]
-    this.resetSearch();
-    this.showCards = this.cards;
+    this.resetFilter();
+    this.showAllCards();
   }
 
-  resetSearch() {
-    this.searchByLawNumber = '';
-    this.searchByName = '';
-    this.searchByBusiness = '';
-    this.searchByAddress = '';
-    this.searchByType = '';
+  showAllCards() {
+    this.cards.map(card => {
+      card.toShow = true;
+    });
   }
 
-  filterCards() {
-    this.showCards = new Array();
-    if (this.searchByLawNumber == '' && this.searchByName == '' && this.searchByBusiness == '' && this.searchByAddress == '' && this.searchByType == '')
-      this.showCards = this.cards;
-    else {
-      if (this.searchByAddress != '')
-        this.cards.map(card => {
-          let fullAddress = card.city + ' ' + card.address;
-          if (fullAddress.indexOf(this.searchByAddress) != -1) this.showCards.push(card);
-        });
-        
-    }
+  resetFilter(thisFilter) {
+    this.keys = new Array();
+    for (let key in this.filters) this.keys.push(key);
+    if (thisFilter >= 0)
+      this.temp = this.filters[this.keys[thisFilter]];
+    for (let index = 0; index < this.keys.length; index++)
+      this.filters[this.keys[index]] = '';
+    if (this.temp)
+      this.filters[this.keys[thisFilter]] = this.temp;
+  }
 
+  filterCards(filter) {
+    this.resetFilter(filter);
+    this.showAllCards();
+    this.cards.map(card => {
+      if (card[this.keys[filter]].indexOf(this.filters[this.keys[filter]]) != -1) card.toShow = true;
+      else card.toShow = false;
+    });
   }
 }
 
