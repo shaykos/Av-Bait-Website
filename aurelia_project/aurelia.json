@@ -81,11 +81,52 @@
             "env": "dev"
           },
           "text",
+          "jquery",
+          {
+            "name":"popper.js",
+            "main": "dist/umd/popper.js",
+            "path": "../node_modules/popper.js"
+          },
           {
             "name": "moment",
             "main": "./moment.js",
             "path": "../node_modules/moment",
-            "resources": []
+            "resources": [ "locale/he.js"]
+          },
+          {
+            "name": "fullcalendar",
+            "main": "dist/fullcalendar.js",
+            "path": "../node_modules/fullcalendar",
+            "deps": [
+              "jquery",
+              "moment"
+            ],
+            "resources": [
+              "dist/fullcalendar.css",
+              "dist/fullcalendar.print.css",
+              "dist/locale/he.js"
+            ]
+          },
+          {
+            "name": "fullcalendar-scheduler",
+            "main": "dist/scheduler.js",
+            "path": "../node_modules/fullcalendar-scheduler",
+            "resources": [
+              "dist/scheduler.css"
+            ]
+          },
+          {
+            "name": "bootstrap",
+            "path": "../node_modules/bootstrap/dist",
+            "main": "js/bootstrap.min.js",
+            "deps": [
+              "jquery",
+              "popper.js"
+            ],
+            "exports": "$",
+            "resources": [
+              "css/bootstrap.css"
+            ]
           }
         ]
       }

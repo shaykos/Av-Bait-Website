@@ -13,3 +13,8 @@ form.border-bottom {
     margin-bottom: 15px;
     padding-bottom: 15px;
 }
+
+#calendar {
+  max-width: 80%;
+  margin: 40px auto;
+}

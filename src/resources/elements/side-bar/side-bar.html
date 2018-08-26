@@ -3,10 +3,23 @@
   <require from="./side-bar.css"></require>
 
   <nav>
-    <ul class="nav nav-pills flex-column">
+    <ul class="nav nav-pills flex-column" if.bind="links">
       <li repeat.for="link of links.navigation" class="nav-item border-bottom">
-        <a class="nav-link" href.bind="link.href" class.bind="link.isActive ? 'active' :''"><i class="fas" class.bind="link.settings.icon"></i>&nbsp;&nbsp;${link.title} </a>
+        <a class="nav-link" href.bind="link.href" class.bind="link.isActive ? 'active' :''"><i class="fas" class.bind="link.settings.icon"></i>&nbsp;&nbsp;${link.title}
+        </a>
       </li>
     </ul>
+    <div class="dropdown show" if.bind="views">
+      <div repeat.for="view of views">
+        <a class="btn btn-secondary btn-block mb-3" role="button" id="${view.name}" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false" style="color:#fff;">
+          ${view.name}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="${view.name}" style="width:100%;right:-4px">
+          <a class="dropdown-item" repeat.for="sub of view.subs" click.delegate="setView(view, sub)">${sub.name}</a>
+        </div>
+      </div>
+    </div>
+
   </nav>
 </template>
